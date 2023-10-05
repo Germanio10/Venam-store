@@ -1,0 +1,516 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+            <!-- exclusive-collection-area -->
+            <section class="exclusive-collection pt-100 pb-55">
+                <div class="custom-container-two">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="section-title text-center mb-60">
+                                <span class="sub-title">exclusive collection</span>
+                                <h2 class="title"> selling products</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        {% for product in products %}
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="exclusive-item exclusive-item-three text-center mb-40">
+                                <div class="exclusive-item-thumb">
+                                    <a href="{% url 'products:detail' product.id %}">
+                                        <img src="{{ product.get_main_image.image.url }}" alt="">
+                                        <img class="overlay-product-thumb" src="{{ product.get_main_image.image.url }}" alt="">
+                                    </a>
+                                    <ul class="action">
+                                        <li><a href="#"><i class="flaticon-shuffle-1"></i></a></li>
+                                        <li><a href="#"><i class="flaticon-supermarket"></i></a></li>
+                                        <li><a href="#"><i class="flaticon-witness"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="exclusive-item-content">
+                                    <h5><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h5>
+                                    <div class="exclusive--item--price">
+                                        <del class="old-price">${{ product.price }}</del>
+                                        <span class="new-price">${{ product.price }}</span>
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+            <!-- exclusive-collection-area-end -->
+
+            <!-- deal-of-the-day -->
+            <section class="deal-of-the-day theme-bg pt-100 pb-70">
+                <div class="custom-container-two">
+                    <div class="row">
+                        <div class="custom-col-4">
+                            <div class="deal-of-day-banner mb-30">
+                                <a href="shop-left-sidebar.html"><img src="{% static 'img/product/deal_banner.jpg' %}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="custom-col-8">
+                            <div class="deal-day-top">
+                                <div class="deal-day-title">
+                                    <h4 class="title">Deal Of The Day</h4>
+                                </div>
+                                <div class="view-all-deal">
+                                    <a href="shop-left-sidebar.html"><i class="flaticon-scroll"></i> View All</a>
+                                </div>
+                            </div>
+                            <div class="row deal-day-active">
+                                {% for product in products %}
+                                <div class="col-xl-3">
+                                    <div class="most-popular-viewed-item mb-30">
+                                        <div class="viewed-item-top">
+                                            <div class="most--popular--item--thumb mb-20">
+                                                <a href="{% url 'products:detail' product.id %}"><img style="width: 170px; height: 178px" src="{{ product.get_main_image.image.url }}" alt=""></a>
+                                            </div>
+                                            <div class="super-deal-content">
+                                                <h6><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h6>
+                                                <p>US $ {{ product.price }}<span>{ 50% off }</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <div class="col-xl-3">
+                                    <div class="most-popular-viewed-item mb-30">
+                                        <div class="viewed-item-top">
+                                            <div class="most--popular--item--thumb mb-20">
+                                                <a href="shop-details.html"><img src="{% static 'img/product/most_popular_02.jpg' %}" alt=""></a>
+                                            </div>
+                                            <div class="super-deal-content">
+                                                <h6><a href="shop-details.html">Stylish Smart Watch</a></h6>
+                                                <p>US $ 17.00<span>{ 50% off }</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="viewed-item-bottom">
+                                            <ul>
+                                                <li>Total Sold : 35</li>
+                                                <li>Stocks : 3456</li>
+                                            </ul>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div class="viewed-offer-time">
+                                                <p><span>Hurry Up</span> Limited Time Offer</p>
+                                                <div class="coming-time" data-countdown="2020/9/15"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="most-popular-viewed-item mb-30">
+                                        <div class="viewed-item-top">
+                                            <div class="most--popular--item--thumb mb-20">
+                                                <a href="shop-details.html"><img src="{% static 'img/product/most_popular_03.jpg' %}" alt=""></a>
+                                            </div>
+                                            <div class="super-deal-content">
+                                                <h6><a href="shop-details.html">Fashion Party Dress</a></h6>
+                                                <p>US $ 17.00<span>{ 50% off }</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="viewed-item-bottom">
+                                            <ul>
+                                                <li>Total Sold : 35</li>
+                                                <li>Stocks : 3456</li>
+                                            </ul>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 55%;" aria-valuenow="35" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div class="viewed-offer-time">
+                                                <p><span>Hurry Up</span> Limited Time Offer</p>
+                                                <div class="coming-time" data-countdown="2020/9/11"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="most-popular-viewed-item mb-30">
+                                        <div class="viewed-item-top">
+                                            <div class="most--popular--item--thumb mb-20">
+                                                <a href="shop-details.html"><img src="{% static 'img/product/most_popular_01.jpg' %}" alt=""></a>
+                                            </div>
+                                            <div class="super-deal-content">
+                                                <h6><a href="shop-details.html">Vacuum Fashion Bag</a></h6>
+                                                <p>US $ 31.00<span>{ 50% off }</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="viewed-item-bottom">
+                                            <ul>
+                                                <li>Total Sold : 35</li>
+                                                <li>Stocks : 3456</li>
+                                            </ul>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="35" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div class="viewed-offer-time">
+                                                <p><span>Hurry Up</span> Limited Time Offer</p>
+                                                <div class="coming-time" data-countdown="2020/9/9"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="most-popular-viewed-item mb-30">
+                                        <div class="viewed-item-top">
+                                            <div class="most--popular--item--thumb mb-20">
+                                                <a href="shop-details.html"><img src="{% static 'img/product/most_popular_02.jpg' %}" alt=""></a>
+                                            </div>
+                                            <div class="super-deal-content">
+                                                <h6><a href="shop-details.html">Stylish Smart Watch</a></h6>
+                                                <p>US $ 17.00<span>{ 50% off }</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="viewed-item-bottom">
+                                            <ul>
+                                                <li>Total Sold : 35</li>
+                                                <li>Stocks : 3456</li>
+                                            </ul>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div class="viewed-offer-time">
+                                                <p><span>Hurry Up</span> Limited Time Offer</p>
+                                                <div class="coming-time" data-countdown="2020/9/15"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- deal-of-the-day-end -->
+
+            <!-- top-cat-banner -->
+            <div class="top--cat--banner--area pt-80">
+                <div class="custom-container-two">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-7 col-lg-6">
+                            <div class="top-cat-banner-item yellow mt-20">
+                                <a href="shop-left-sidebar.html"><img src="{% static 'img/product/banner1.jpg' %}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-6">
+                                    <div class="top-cat-banner-item dark-gray mt-20">
+                                        <a href="shop-left-sidebar.html"><img src="{% static 'img/product/banner2.jpg' %}" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-6">
+                                    <div class="top-cat-banner-item lite-red mt-20">
+                                        <a href="shop-left-sidebar.html"><img src="{% static 'img/product/banner3.jpg' %}" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- top-cat-banner-end -->
+
+            <!-- trending-this-week -->
+            <section class="trending-this-week-area pt-100 pb-55">
+                <div class="custom-container-two">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="deal-day-top">
+                                <div class="deal-day-title">
+                                    <h4 class="title">Trending This Week</h4>
+                                </div>
+                                <div class="view-all-deal">
+                                    <a href="shop-left-sidebar.html"><i class="flaticon-scroll"></i> View All</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        {% for product in products %}
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="exclusive-item exclusive-item-three text-center mb-40">
+                                <div class="exclusive-item-thumb">
+                                    <a href="{% url 'products:detail' product.id %}">
+                                        <img src="{{ product.get_main_image.image.url }}" alt="">
+                                    </a>
+                                    <ul class="action">
+                                        <li><a href="#"><i class="flaticon-shuffle-1"></i></a></li>
+                                        <li><a href="#"><i class="flaticon-supermarket"></i></a></li>
+                                        <li><a href="#"><i class="flaticon-witness"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="exclusive-item-content">
+                                    <h5><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h5>
+                                    <div class="exclusive--item--price">
+                                        <del class="old-price">${{ product.price }}</del>
+                                        <span class="new-price">${{ product.price }}</span>
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+            </section>
+            <!-- trending-this-week-end -->
+
+            <!-- bs-cat-area -->
+            <section class="bs-cat-area theme-bg pt-100 pb-70">
+                <div class="custom-container-two">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="section-title text-center mb-60">
+                                <span class="sub-title">exclusive collection</span>
+                                <h2 class="title">best selling category</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <div class="deal-of-day-banner mb-30">
+                                <a href="shop-left-sidebar.html"><img src="{% static 'img/product/banner4.jpg' %}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-12">
+                            <div class="row">
+                                {% for category in categories%}
+                                <div class="col-sm-6">
+                                    <div class="bs-cat-box mb-30">
+                                        <div class="bs-cat-thumb">
+                                            <a href="shop-left-sidebar.html"><img style="width: 168px; height: 180px" src="{{ category.image.url }}" alt=""></a>
+                                        </div>
+                                        <div class="bs-cat-list">
+                                            <ul>
+                                                <li class="title">{{ category.name }}</li>
+
+                                                {% for type_category in category.categories.all %}
+                                                    <li><a href="{% url 'products:product_list_type' type_category.id %}">{{ type_category.name }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <a href="{% url 'products:product_list' %}" class="view-all">View All</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- bs-cat-area-end -->
+
+            <!-- testimonial-area -->
+            <section class="testimonial-area pt-100 pb-100">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="section-title text-center mb-60">
+                                <span class="sub-title">Our testimonial</span>
+                                <h2 class="title">happy customer quotes</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row testimonial-active">
+                        <div class="col-xl-4">
+                            <div class="testimonial-item text-center">
+                                <div class="testi-avatar-img mb-20">
+                                    <img src="{% static 'img/images/testi_avatar01.png' %}" alt="">
+                                </div>
+                                <div class="testi-avatar-info">
+                                    <h5>Emma Watson</h5>
+                                    <span>CEO of <strong>Amazon</strong></span>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="testi-content">
+                                    <p>“ In promotion and advertising, a testimonial show consists of a person's written spoken statement extolling the virtue
+                                    of a product ”</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="testimonial-item text-center">
+                                <div class="testi-avatar-img mb-20">
+                                    <img src="{% static 'img/images/testi_avatar02.png' %}" alt="">
+                                </div>
+                                <div class="testi-avatar-info">
+                                    <h5>Janet Jackson</h5>
+                                    <span>CEO of <strong>Amazon</strong></span>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="testi-content">
+                                    <p>“ In promotion and advertising, a testimonial show consists of a person's written spoken statement extolling the virtue
+                                    of a product ”</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="testimonial-item text-center">
+                                <div class="testi-avatar-img mb-20">
+                                    <img src="{% static 'img/images/testi_avatar03.png' %}" alt="">
+                                </div>
+                                <div class="testi-avatar-info">
+                                    <h5>Anddy Willam</h5>
+                                    <span>CEO of <strong>Amazon</strong></span>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="testi-content">
+                                    <p>“ In promotion and advertising, a testimonial show consists of a person's written spoken statement extolling the virtue
+                                    of a product ”</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="testimonial-item text-center">
+                                <div class="testi-avatar-img mb-20">
+                                    <img src="{% static 'img/images/testi_avatar04.png' %}" alt="">
+                                </div>
+                                <div class="testi-avatar-info">
+                                    <h5>Emma Watson</h5>
+                                    <span>CEO of <strong>Amazon</strong></span>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="testi-content">
+                                    <p>“ In promotion and advertising, a testimonial show consists of a person's written spoken statement extolling the virtue
+                                    of a product ”</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- testimonial-area-end -->
+
+            <!-- core-features -->
+            <section class="core-features-area core-features-style-two">
+                <div class="container">
+                    <div class="core-features-border">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="core-features-item mb-50">
+                                    <div class="core-features-icon">
+                                        <img src="{% static 'img/icon/core_features01.png' %}" alt="">
+                                    </div>
+                                    <div class="core-features-content">
+                                        <h6>Free Shipping On Over $ 50</h6>
+                                        <span>Agricultural mean crops livestock</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="core-features-item mb-50">
+                                    <div class="core-features-icon">
+                                        <img src="{% static 'img/icon/core_features02.png' %}" alt="">
+                                    </div>
+                                    <div class="core-features-content">
+                                        <h6>Membership Discount</h6>
+                                        <span>Only MemberAgricultural livestock</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="core-features-item mb-50">
+                                    <div class="core-features-icon">
+                                        <img src="{% static 'img/icon/core_features03.png' %}" alt="">
+                                    </div>
+                                    <div class="core-features-content">
+                                        <h6>Money Return</h6>
+                                        <span>30 days money back guarantee</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="core-features-item mb-50">
+                                    <div class="core-features-icon">
+                                        <img src="{% static 'img/icon/core_features04.png' %}" alt="">
+                                    </div>
+                                    <div class="core-features-content">
+                                        <h6>Online Support</h6>
+                                        <span>30 days money back guarantee</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- core-features-end -->
+
+            <!-- limited-offer-area -->
+            <section class="limited-offer-area" data-background="img/bg/limited_offer_bg.jpg">
+                <div class="container">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-xl-5 col-lg-6 col-md-7">
+                            <div class="limited-offer-left">
+                                <div class="limited-offer-title">
+                                    <span class="sub-title">exclusive offer</span>
+                                    <h2 class="title">Smart Watch Bracelet</h2>
+                                </div>
+                                <div class="limited-offer-disc">
+                                    <img src="{% static 'img/images/limited_offer_bg.jpg' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-5">
+                            <div class="limited-offer-action">
+                                <a href="#" class="btn">limited time offer</a>
+                                <div class="amount-info">
+                                    <span class="upto">UPTO</span>
+                                    <span class="amount">$ 50.00</span>
+                                    <span class="off">OFF</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="limited-overlay-title">Vanam Top Sale 35<span>%</span></h2>
+                <div class="limited-overlay-img"><img src="{% static 'img/images/limited_offer_bg.jpg' %}" alt=""></div>
+            </section>
+{% endblock %}

@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+            <!-- breadcrumb-area -->
+            <section class="breadcrumb-area breadcrumb-bg" data-background="img/bg/breadcrumb_bg.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="breadcrumb-content text-center">
+                                <h2>Smart Shop</h2>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Catalog</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb-area-end -->
+
+            <!-- shop-area -->
+            <div class="shop-area gray-bg pt-100 pb-100">
+                <div class="custom-container-two">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8 order-2 order-lg-0">
+                            <aside class="shop-sidebar">
+                                <div class="widget shop-widget mb-30">
+                                    <div class="shop-widget-title">
+                                        <h6 class="title">Product Categories</h6>
+                                    </div>
+                                    <div class="shop-cat-list">
+                                        <ul>
+                                            {% for category in categories %}
+                                            <li><a href="{% url 'products:product_list_category' category.id %}">{{ category.name }}</a><span>{{ category.get_product_count }}</span></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="widget shop-widget mb-30">
+                                    <div class="shop-widget-title">
+                                        <h6 class="title">Filter By Price</h6>
+                                    </div>
+                                    <div class="price_filter">
+                                        <div id="slider-range"></div>
+                                        <div class="price_slider_amount">
+                                            <span>Price :</span>
+                                            <input type="text" id="amount" name="price" placeholder="Add Your Price" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget shop-widget mb-30">
+                                    <div class="shop-widget-title">
+                                        <h6 class="title">NEW PRODUCT</h6>
+                                        <div class="slider-nav"></div>
+                                    </div>
+                                    <div class="sidebar-product-active">
+                                        <div class="sidebar-product-list">
+                                            <ul>
+                                                <li>
+                                                    <div class="sidebar-product-thumb">
+                                                        <a href="shop-details.html"><img src="img/product/sidebar_product01.jpg" alt=""></a>
+                                                    </div>
+                                                    <div class="sidebar-product-content">
+                                                        <div class="rating">
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                        <h5><a href="shop-details.html">Slim Fit Cotton</a></h5>
+                                                        <span>$ 39.00</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="sidebar-product-thumb">
+                                                        <a href="shop-details.html"><img src="img/product/sidebar_product02.jpg" alt=""></a>
+                                                    </div>
+                                                    <div class="sidebar-product-content">
+                                                        <div class="rating">
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                        <h5><a href="shop-details.html">Slim Fit Cotton</a></h5>
+                                                        <span>$ 39.00</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="sidebar-product-thumb">
+                                                        <a href="shop-details.html"><img src="img/product/sidebar_product03.jpg" alt=""></a>
+                                                    </div>
+                                                    <div class="sidebar-product-content">
+                                                        <div class="rating">
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                        <h5><a href="shop-details.html">Slim Fit Cotton</a></h5>
+                                                        <span>$ 39.00</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="sidebar-product-list">
+                                            <ul>
+                                                <li>
+                                                    <div class="sidebar-product-thumb">
+                                                        <a href="shop-details.html"><img src="img/product/sidebar_product01.jpg" alt=""></a>
+                                                    </div>
+                                                    <div class="sidebar-product-content">
+                                                        <div class="rating">
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                        <h5><a href="shop-details.html">Slim Fit Cotton</a></h5>
+                                                        <span>$ 39.00</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="sidebar-product-thumb">
+                                                        <a href="shop-details.html"><img src="img/product/sidebar_product02.jpg" alt=""></a>
+                                                    </div>
+                                                    <div class="sidebar-product-content">
+                                                        <div class="rating">
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                        <h5><a href="shop-details.html">Slim Fit Cotton</a></h5>
+                                                        <span>$ 39.00</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="sidebar-product-thumb">
+                                                        <a href="shop-details.html"><img src="img/product/sidebar_product03.jpg" alt=""></a>
+                                                    </div>
+                                                    <div class="sidebar-product-content">
+                                                        <div class="rating">
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                        <h5><a href="shop-details.html">Slim Fit Cotton</a></h5>
+                                                        <span>$ 39.00</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget shop-widget mb-30">
+                                    <div class="shop-widget-title">
+                                        <h6 class="title">Product Brand</h6>
+                                    </div>
+                                    <div class="sidebar-brand-list">
+                                        <ul>
+                                            {% for brand in brands %}
+                                            <li><a href="{% url 'products:product_list_brand' brand.id %}">{{ brand.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <div class="shop-sidebar-size">
+                                        <div class="shop-widget-title">
+                                            <h6 class="title">Size</h6>
+                                        </div>
+                                        <div class="shop-size-list">
+                                            <ul>
+                                                {% for size in sizes %}
+                                                    {% if size.cloth_size %}
+                                                        <li><a href="{% url 'products:product_list_size' size.id %}">{{ size.cloth_size }}</a></li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget">
+                                    <div class="shop-widget-banner special-offer-banner">
+                                        <a href="shop-left-sidebar.html"><img src="img/product/sidebar_banner_ad.jpg" alt=""></a>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="col-xl-9 col-lg-8">
+                            <div class="shop-top-meta mb-40">
+                                <p class="show-result">Showing Products 1-12 Of 10 Result</p>
+                                <div class="shop-meta-right">
+                                    <ul>
+                                        <li class="active"><a href="#"><i class="flaticon-grid"></i></a></li>
+                                        <li><a href="#"><i class="flaticon-list"></i></a></li>
+                                    </ul>
+                                    <form action="#">
+                                        <select class="custom-select">
+                                            <option selected="">Default Sorting</option>
+                                            <option>Free Shipping</option>
+                                            <option>Best Match</option>
+                                            <option>Newest Item</option>
+                                            <option>Size A - Z</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                                {% for product in page_obj %}
+                                <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
+                                    <div class="exclusive-item exclusive-item-three text-center mb-50">
+                                        <div class="exclusive-item-thumb">
+                                            <a href="{% url 'products:detail' product.id %}">
+                                                <img style="width: 327px; height: 358px" src="{{ product.get_main_image.image.url }}" alt="">
+                                            </a>
+                                            <ul class="action">
+                                                <li><a href="#"><i class="flaticon-shuffle-1"></i></a></li>
+                                                <li><a href="#"><i class="flaticon-supermarket"></i></a></li>
+                                                <li><a href="#"><i class="flaticon-witness"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="exclusive-item-content">
+                                            <h5><a href="shop-details.html">{{ product.name }}</a></h5>
+                                            <div class="exclusive--item--price">
+                                                <del class="old-price">{{ product.price }}</del>
+                                                <span class="new-price">{{ product.price }}</span>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="pagination-wrap">
+                                <ul>
+                                    {% if page_obj.has_previous %}
+                                        <li class="prev"><a href="?page=1"><i class="fas fa-long-arrow-alt-left"></i> First</a></li>
+                                        <li class="prev"><a href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-long-arrow-alt-left"></i> Prev</a></li>
+                                    {% endif %}
+                                    {% for i in page_obj.paginator.page_range %}
+                                        <li{% if page_obj.number == i %} class="active"{% endif %}><a href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endfor %}
+                                    {% if page_obj.has_next %}
+                                        <li class="next"><a href="?page={{ page_obj.next_page_number }}">Next <i class="fas fa-long-arrow-alt-right"></i></a></li>
+                                        <li class="next"><a href="?page={{ page_obj.paginator.num_pages }}">Last <i class="fas fa-long-arrow-alt-right"></i></a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- shop-area-end -->
+
+            <!-- limited-offer-area -->
+            <section class="limited-offer-area" data-background="img/bg/limited_offer_bg.jpg">
+                <div class="container">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-xl-5 col-lg-6 col-md-7">
+                            <div class="limited-offer-left">
+                                <div class="limited-offer-title">
+                                    <span class="sub-title">exclusive offer</span>
+                                    <h2 class="title">Smart Watch Bracelet</h2>
+                                </div>
+                                <div class="limited-offer-disc">
+                                    <img src="img/images/limited_offer_discount.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-5">
+                            <div class="limited-offer-action">
+                                <a href="#" class="btn">limited time offer</a>
+                                <div class="amount-info">
+                                    <span class="upto">UPTO</span>
+                                    <span class="amount">$ 50.00</span>
+                                    <span class="off">OFF</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="limited-overlay-title">Vanam Top Sale 35<span>%</span></h2>
+                <div class="limited-overlay-img"><img src="img/images/limited_offer_img.png" alt=""></div>
+            </section>
+            <!-- limited-offer-area-end -->
+{% endblock %}
