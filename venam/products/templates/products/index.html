@@ -301,7 +301,7 @@
                                 <div class="col-sm-6">
                                     <div class="bs-cat-box mb-30">
                                         <div class="bs-cat-thumb">
-                                            <a href="shop-left-sidebar.html"><img style="width: 168px; height: 180px" src="{{ category.image.url }}" alt=""></a>
+                                            <a href="{%  url 'products:product_list_category' category.id %}"><img style="width: 168px; height: 180px" src="{{ category.image.url }}" alt=""></a>
                                         </div>
                                         <div class="bs-cat-list">
                                             <ul>
@@ -312,7 +312,7 @@
                                                 {% endfor %}
                                             </ul>
                                         </div>
-                                        <a href="{% url 'products:product_list' %}" class="view-all">View All</a>
+                                        <a href="{% url 'products:product_list_category' category.id %}" class="view-all">View All</a>
                                     </div>
                                 </div>
                                 {% endfor %}

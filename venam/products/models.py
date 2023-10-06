@@ -5,28 +5,28 @@ from django.core.validators import MaxValueValidator
 class Category(models.Model):
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='category_images')
-    
-    def __str__(self) -> str:
+
+    def __str__(self):
         return self.name
     
     def get_product_count(self):
         return self.products.all().count()
-    
 
 class TypeCategory(models.Model):
     name = models.CharField(max_length=50)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='categories')
-    
-    def __str__(self) -> str:
-        return f"{self.name}: {self.category}"
+    category = models.ManyToManyField(Category, related_name='categories')
+
+    def __str__(self):
+        return f"{', '.join(category.name for category in self.category.all())}: {self.name}"
+
 
 
 class SubTypeCategory(models.Model):
     name = models.CharField(max_length=100)
     type_category = models.ManyToManyField(TypeCategory, related_name='type_categories')
 
-    def __str__(self) -> str:
-        return f"{self.name}: {self.type_category}"
+    def __str__(self):
+        return f"{', '.join(type_category.name for type_category in self.type_category.all())}: {self.name}"
 
 
 class Tag(models.Model):
@@ -60,7 +60,9 @@ class Product(models.Model):
     size = models.ManyToManyField(Size, blank=True)
     quantity = models.PositiveSmallIntegerField(default=0)
     tag = models.ManyToManyField(Tag, related_name='products')
-    category = models.ManyToManyField(Category, related_name='products')
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    type_category = models.ForeignKey(TypeCategory, on_delete=models.CASCADE, related_name='products')
+    sub_type_category = models.ForeignKey(SubTypeCategory, on_delete=models.CASCADE, related_name='products')
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     is_stock = models.BooleanField(default=True)
     

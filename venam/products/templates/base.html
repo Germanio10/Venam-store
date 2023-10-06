@@ -317,19 +317,19 @@
                                 <ul class="category-menu">
                                     {% for category in categories %}
                                     <li class="has-dropdown">
-                                        <a href="">
+                                        <a href="{% url 'products:product_list_category' category.id %}">
                                             <div class="cat-menu-img">
                                                 <img src="{{ category.image.url }}" width="50" height="50" alt="">
                                             </div>
                                             {{ category.name }}
                                         </a>
                                         <ul class="mega-menu">
-                                            {% for type_category in type_categories %}
+                                            {% for type_category in category.categories.all %}
                                             <li>
                                                 <ul>
                                                     <li class="dropdown-title">{{ type_category.name }}</li>
-                                                    {% for sub_type_category in sub_type_categories %}
-                                                    <li><a href="">{{ sub_type_category.name }}</a></li>
+                                                    {% for sub_type_category in type_category.type_categories.all %}
+                                                    <li><a href="{% url 'products:product_list_type' type_category.id %}">{{ sub_type_category.name }}</a></li>
                                                     {% endfor %}
                                                 </ul>
                                             </li>
@@ -337,31 +337,20 @@
                                         </ul>
                                     </li>
                                     {% endfor %}
-                                </ul>
+                                </ul> 
                             </div>
                         </div>
                         <div class="col-xl-9 col-lg-8">
                             <div class="d-flex align-items-center justify-content-center justify-content-lg-end">
                                 <div class="header-search-wrap">
-                                    <form action="#">
-                                        <input type="text" placeholder="Search for your item's type.....">
-                                        <select class="custom-select">
-                                            <option selected="">All Categories</option>
-                                            <option>Women's Clothing</option>
-                                            <option>Men's Clothing</option>
-                                            <option>Computer & Office</option>
-                                            <option>Consumer Electronics</option>
-                                            <option>Home & Garden</option>
-                                            <option>Luggage & Bags</option>
-                                            <option>Shoes</option>
-                                            <option>Mother & Kids</option>
-                                            <option>Beauty & Health</option>
-                                            <option>Home Appliances</option>
-                                            <option>Food</option>
-                                            <option>Underwear & Sleepwear</option>
-                                            <option>In All Categories</option>
+                                    <form action="">
+                                        <input type="text" name="query" placeholder="Search for your item's type.....">
+                                        <select name="category" class="custom-select">
+                                            {% for category in categories %}
+                                                <option value="{{ category.name }}">{{ category.name }}</option>
+                                            {% endfor %}
                                         </select>
-                                        <button><i class="flaticon-magnifying-glass-1"></i></button>
+                                        <button type="submit"><i class="flaticon-magnifying-glass-1"></i></button>
                                     </form>
                                 </div>
                                 <div class="header-free-shopping">
