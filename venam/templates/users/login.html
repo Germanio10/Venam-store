@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load socialaccount %}
+
+
+{% block content %}
+
+            <section class="my-account-area pattern-bg pt-100 pb-100" data-background="img/bg/pattern_bg.jpg">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8 col-lg-10">
+                            <div class="login-page-title">
+                                <h2 class="title"><span>Login</span></h2>
+                                <div class="col-lg-7">
+                                    {% if form.errors %}
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                                             style="margin-top: 50px;">
+                                            {{ form.errors }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    {% endif %}
+                            </div>
+                            <div class="my-account-bg" data-background="{% static 'img/bg/my_account_bg.png' %}">
+                                <div class="my-account-content">
+                                    <p>Welcome Venam! Please Login Your <span>Account</span></p>
+                                    <div class="direct-login">
+                                        <a href="{% provider_login_url 'github' %}">
+                                            <i class="fab fa-github fa-2x" style="color: #303030;">Login with GitHub</i>
+                                        </a>
+                                    </div>
+                                    <span class="or">- OR -</span>
+                                    <form action="{% url 'users:login' %}" class="login-form" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-grp">
+                                            <label for="{{ form.username.id_for_label }}">USERNAME <span>*</span></label>
+                                            {{ form.username }}
+                                        </div>
+                                        <div class="form-grp">
+                                            <label for="{{ form.email.id_for_label }}">EMAIL <span>*</span></label>
+                                            {{ form.email }}
+                                        </div>
+                                        <div class="form-grp">
+                                            <label for="{{ form.password.id_for_label }}">PASSWORD <span>*</span></label>
+                                            {{ form.password }}
+                                        </div>
+                                        <div class="form-group mt-4 mb-0">
+                                            <input class="btn btn-primary btn-block" type="submit" value="Войти">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+{% endblock %}

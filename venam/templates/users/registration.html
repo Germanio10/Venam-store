@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+            <section class="my-account-area pattern-bg pt-100 pb-100" data-background="img/bg/pattern_bg.jpg">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8 col-lg-10">
+                            <div class="login-page-title">
+                                <h2 class="title"><span>Registration</span></h2>
+                            </div>
+                            <div class="my-account-bg" data-background="{% static 'img/bg/my_account_bg.png' %}">
+                                <div class="my-account-content">
+                                    <p>Welcome Venam! Please Login Your <span>Account</span></p>
+                                    <div class="direct-login">
+                                        <a href="">
+                                            <i class="fab fa-github fa-2x" style="color: #303030;">Login with GitHub</i>
+                                        </a>
+                                    </div>
+                                    <span class="or">- OR -</span>
+                                    <form action="{% url 'users:registration' %}" class="login-form" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-grp">
+                                            <label for="{{ form.first_name.id_for_label}}">FIRST NAME <span>*</span></label>
+                                            {{ form.first_name }}
+                                        </div>
+                                        <div class="form-grp">
+                                            <label for="{{ form.last_name.id_for_label }}">LAST NAME <span>*</span></label>
+                                            {{ form.last_name }}
+                                        </div>
+                                        <div class="form-grp">
+                                            <label for="{{ form.username.id_for_label }}">USERNAME <span>*</span></label>
+                                            {{ form.username }}
+                                        </div>
+                                        <div class="form-grp">
+                                            <label for="{{ form.email.id_for_label }}">EMAIL <span>*</span></label>
+                                            {{ form.email }}
+                                        </div>
+                                        <div class="form-grp">
+                                            <label for="{{ form.password1.id_for_label }}">PASSWORD <span>*</span></label>
+                                            {{ form.password1 }}
+                                        </div>
+                                        <div class="form-grp">
+                                            <label for="{{ form.password2.id_for_label }}">REPEAT PASSWORD <span>*</span></label>
+                                            {{ form.password2 }}
+                                        </div>
+                                        <div class="form-group mt-4 mb-0">
+                                            <input class="btn btn-primary btn-block" type="submit" value="Создать аккаунт">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+{% endblock %}
