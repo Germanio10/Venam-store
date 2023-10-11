@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+
+            <!-- breadcrumb-area -->
+            <section class="breadcrumb-area breadcrumb-bg" data-background="{% static 'img/bg/breadcrumb_bg.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="breadcrumb-content text-center">
+                                <h2>Wishlist</h2>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb-area-end -->
+
+            <!-- wishlist-area -->
+            <section class="wishlist-area pt-100 pb-100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive-xl">
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-thumbnail"></th>
+                                            <th class="product-name">Product</th>
+                                            <th class="product-price">Price</th>
+                                            <th class="product-quantity">QUANTITY</th>
+                                            <th class="product-subtotal">SUBTOTAL</th>
+                                            <th class="product-stock-status">Stock Status</th>
+                                            <th class="product-add-to-cart"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for wishlist in product_wishlists %}
+                                        <tr>
+                                            <td class="product-thumbnail"><a href="{% url 'wishlists:wishlist_remove' wishlist.id %}" class="wishlist-remove"><i class="flaticon-cancel-1"></i></a><a href="{% url 'products:detail' wishlist.product.id %}"><img style="width: 170px; height: 178px" src="{{ wishlist.product.get_main_image.image.url }}" alt=""></a>
+                                            </td>
+                                            <td class="product-name">
+                                                <h4><a href="shop-details.html">{{ wishlist.product.name }}</a></h4>
+                                                <p>{{ wishlist.product.description }}</p>
+                                            </td>
+                                            <td class="product-price">${{ wishlist.product.price }}</td>
+                                            <td class="product-quantity">
+                                                <div class="cart-plus">
+                                                    <form action="#">
+                                                        <div class="cart-plus-minus">
+                                                            <input type="text" value="{{ wishlist.quantity }}">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal"><span>${{ wishlist.total_sum }}</span></td>
+                                            {% if wishlist.product.is_stock %}
+                                            <td class="product-stock-status"><span>In stock</span></td>
+                                            {% else %}
+                                            <td class="product-stock-status"><span>Not available</span></td>
+                                            {% endif %}
+                                            <td class="product-add-to-cart"><a href="{% url 'carts:cart_add' wishlist.product.id %}" class="btn">Add to Cart</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- wishlist-area-end -->
+{% endblock %}

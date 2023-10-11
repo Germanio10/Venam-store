@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load socialaccount %}
 
 
 {% block content %}
@@ -13,9 +14,20 @@
                             </div>
                             <div class="my-account-bg" data-background="{% static 'img/bg/my_account_bg.png' %}">
                                 <div class="my-account-content">
+                                    <div class="col-lg-7">
+                                    {% if form.errors %}
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                                             style="margin-top: 50px;">
+                                            {{ form.errors }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    {% endif %}
+                            </div>
                                     <p>Welcome Venam! Please Login Your <span>Account</span></p>
                                     <div class="direct-login">
-                                        <a href="">
+                                        <a href="{% provider_login_url 'github' %}">
                                             <i class="fab fa-github fa-2x" style="color: #303030;">Login with GitHub</i>
                                         </a>
                                     </div>

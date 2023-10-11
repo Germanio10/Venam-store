@@ -25,6 +25,8 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('products/', include('products.urls', namespace='products')),
     path('users/', include('users.urls', namespace='users')),
+    path('wishlist/', include('wishlists.urls', namespace='wishlists')),
+    path('cart/', include('carts.urls', namespace='carts')),
     path('accounts/', include('allauth.urls')),
 ]
 

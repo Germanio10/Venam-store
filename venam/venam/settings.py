@@ -46,6 +46,8 @@ INSTALLED_APPS = [
 
     'products',
     'users',
+    'wishlists',
+    'carts',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
 
                 'products.context_processors.departments_context',
+                'carts.context_processors.cart_context',
             ],
         },
     },
@@ -145,6 +148,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Users
 AUTH_USER_MODEL = 'users.User'
+LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 

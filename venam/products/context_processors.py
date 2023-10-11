@@ -1,6 +1,5 @@
 from .models import Category, TypeCategory, SubTypeCategory
 
-
 def departments_context(request):
     categories = Category.objects.all()
     type_categories = TypeCategory.objects.all()
@@ -12,5 +11,3 @@ def departments_context(request):
         }
     
     return context
-
-    

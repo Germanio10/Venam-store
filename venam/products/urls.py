@@ -11,4 +11,5 @@ urlpatterns = [
     path('sub_type/product_list/<int:sub_type_category_id>/', ProductListView.as_view(), name='product_list_sub_type'),
     path('brand/product_list/<int:brand_id>/', ProductListView.as_view(), name='product_list_brand'),
     path('type_category/product_list/<int:brand_id>/', ProductListView.as_view(), name='product_list_type'),
+    path('tag/product_list/<int:tag_ida>/', ProductListView.as_view(), name='product_list_tag'),
 ]

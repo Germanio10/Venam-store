@@ -90,68 +90,15 @@
 
         <!-- header-area -->
         <header class="header-style-two header-style-three">
-
-            <!-- header-top -->
             <div class="header-top-area">
                 <div class="custom-container-two">
                     <div class="row">
-                        <div class="col-md-8 col-sm-7">
-                            <div class="header-top-left">
-                                <ul>
-                                    <li>
-                                        <div class="ship-to">
-                                            <span>Ship to</span>
-                                            <div class="dropdown">
-                                                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">
-                                                    <img src="img/icon/ship_flag.png" alt=""> US/USD
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#"><img src="{% static 'img/icon/australia.png' %}" alt="">AUS/USD</a>
-                                                    <a class="dropdown-item" href="#"><img src="{% static 'img/icon/bng.png' %}" alt="">BNG/TK</a>
-                                                    <a class="dropdown-item" href="#"><img src="{% static 'img/icon/india.png' %}" alt="">IN/RP</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="heder-top-guide">
-                                            <span>Quick Guide</span>
-                                            <div class="dropdown">
-                                                <button class="dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">
-                                                    Help
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                                    <a class="dropdown-item" href="terms-conditios.html">Returns</a>
-                                                    <a class="dropdown-item" href="terms-conditios.html">Privacy</a>
-                                                    <a class="dropdown-item" href="terms-conditios.html">Terms</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="heder-top-guide">
-                                            <div class="dropdown">
-                                                <button class="dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">
-                                                    Sell With Us
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                                    <a class="dropdown-item" href="my-account.html">Seller Login</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-5">
+                        <div class="col-md-4 col-sm-5 ml-auto">
                             {% if user.is_authenticated %}
                             <div class="header-top-right">
                                 <ul>
                                     <li>
-                                        <a href="{% url 'users:registration' %}"><i class="flaticon-user"></i>Profile</a>
+                                        <a href="{% url 'users:profile' user.id %}"><i class="flaticon-user"></i>Profile</a>
                                         <span>or</span>
                                         <a href="{% url 'users:logout' %}">Logout</a>
                                     </li>
@@ -172,6 +119,7 @@
                     </div>
                 </div>
             </div>
+            
             <!-- header-top-end -->
 
             <!-- menu-area -->
@@ -192,7 +140,7 @@
                                             <li><a href="about.html">About Us</a></li>
                                             <li class="dropdown"><a href="#">PAGES</a>
                                                 <ul class="submenu">
-                                                    <li><a href="my-account.html">My Account</a></li>
+                                                    <li><a href="{% url 'users:profile' user.id %}">My Account</a></li>
                                                     <li><a href="404.html">404 Page</a></li>
                                                     <li><a href="terms-conditios.html">Terms and Conditions</a></li>
                                                 </ul>
@@ -205,15 +153,6 @@
                                                 </ul>
                                             </li>
                                             <li class="dropdown"><a href="{% url 'products:product_list' %}">SHOP</a>
-                                                <ul class="submenu">
-                                                    <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-                                                    <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                                    <li><a href="shop-details.html">Shop Details</a></li>
-                                                    <li><a href="wishlist.html">Wishlist page</a></li>
-                                                    <li><a href="cart.html">Cart page</a></li>
-                                                    <li><a href="checkout.html">Checkout page</a></li>
-                                                    <li><a href="order-completed.html">Order completed</a></li>
-                                                </ul>
                                             </li>
                                             <li><a href="special.html">SPECIAL</a></li>
                                             <li><a href="contact.html">contacts</a></li>
@@ -221,10 +160,9 @@
                                     </div>
                                     <div class="header-action d-none d-md-block">
                                         <ul>
-                                            <li><a href="#"><i class="flaticon-two-arrows"></i></a></li>
-                                            <li><a href="wishlist.html"><i class="flaticon-heart"></i></a></li>
-                                            <li class="header-shop-cart"><a href="#"><i class="flaticon-shopping-bag"></i><span class="cart-count">2</span></a>
-                                                <span class="cart-total-price">$ 128.00</span>
+                                            <li><a href="{% url 'wishlists:wishlist' %}"><i class="flaticon-heart"></i></a></li>
+                                            <li class="header-shop-cart"><a href="{% url 'carts:cart' %}"><i class="flaticon-shopping-bag"></i><span class="cart-count">{{ cart_products.count }}</span></a>
+                                                <span class="cart-total-price"></span>
                                                 <ul class="minicart">
                                                     <li class="d-flex align-items-start">
                                                         <div class="cart-img">

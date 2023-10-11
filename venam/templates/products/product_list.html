@@ -53,38 +53,6 @@
                                 </div>
                                 <div class="widget shop-widget mb-30">
                                     <div class="shop-widget-title">
-                                        <h6 class="title">NEW PRODUCT</h6>
-                                        <div class="slider-nav"></div>
-                                    </div>
-                                    <div class="sidebar-product-active">
-                                        <div class="sidebar-product-list">
-                                            <ul>
-                                                <li>
-                                                    {% for product in page_obj %}
-                                                    <div class="sidebar-product-thumb">
-                                                        <a href="{% url 'products:detail' product.id %}"><img style="width: 95px; height: 84px" src="{{ product.get_main_image.image.url }}" alt=""></a>
-                                                    </div>
-                                                    {% endfor %}
-                                                    {% for product in page_obj %}
-                                                    <div class="sidebar-product-content">
-                                                        <div class="rating">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </div>
-                                                        <h5><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h5>
-                                                        <span>${{ product.price }}</span>
-                                                    </div>
-                                                    {% endfor %}
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="widget shop-widget mb-30">
-                                    <div class="shop-widget-title">
                                         <h6 class="title">Product Brand</h6>
                                     </div>
                                     <div class="sidebar-brand-list">
