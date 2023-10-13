@@ -94,27 +94,22 @@
                 <div class="custom-container-two">
                     <div class="row">
                         <div class="col-md-4 col-sm-5 ml-auto">
-                            {% if user.is_authenticated %}
                             <div class="header-top-right">
                                 <ul>
                                     <li>
-                                        <a href="{% url 'users:profile' user.id %}"><i class="flaticon-user"></i>Profile</a>
-                                        <span>or</span>
-                                        <a href="{% url 'users:logout' %}">Logout</a>
+                                        {% if user.is_authenticated %}
+                                            <a href="{% url 'users:profile' user.id %}"><i class="flaticon-user"></i>Profile</a>
+                                            <span>or</span>
+                                            <a href="{% url 'users:logout' %}">Logout</a>
+                                        {% else %}
+                                            <a href="{% url 'users:registration' %}"><i class="flaticon-user"></i>Sign Up</a>
+                                            <span>or</span>
+                                            <a href="{% url 'users:login' %}">Sign In</a>
+                                        {% endif %}
                                     </li>
                                 </ul>
                             </div>
-                            {% else %}
-                            <div class="header-top-right">
-                                <ul>
-                                    <li>
-                                        <a href="{% url 'users:registration' %}"><i class="flaticon-user"></i>Sign Up</a>
-                                        <span>or</span>
-                                        <a href="{% url 'users:login' %}">Sign In</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            {% endif %}
+                            
                         </div>
                     </div>
                 </div>
@@ -137,25 +132,17 @@
                                         <ul class="navigation">
                                             <li class="active dropdown"><a href="{% url 'index' %}">Home</a>
                                             </li>
-                                            <li><a href="about.html">About Us</a></li>
                                             <li class="dropdown"><a href="#">PAGES</a>
                                                 <ul class="submenu">
+                                                    {% if user.is_authenticated %}
                                                     <li><a href="{% url 'users:profile' user.id %}">My Account</a></li>
-                                                    <li><a href="404.html">404 Page</a></li>
-                                                    <li><a href="terms-conditios.html">Terms and Conditions</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown"><a href="#">BLOG</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Standard Blog</a></li>
-                                                    <li><a href="blog-classic.html">Classic Blog</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
+                                                    {% endif %}
+                                                    <li><a href="{% url 'carts:cart' %}">Cart</a></li>
+                                                    <li><a href="{% url 'wishlists:wishlist' %}">Wishlist</a></li>
                                                 </ul>
                                             </li>
                                             <li class="dropdown"><a href="{% url 'products:product_list' %}">SHOP</a>
                                             </li>
-                                            <li><a href="special.html">SPECIAL</a></li>
-                                            <li><a href="contact.html">contacts</a></li>
                                         </ul>
                                     </div>
                                     <div class="header-action d-none d-md-block">
@@ -322,112 +309,6 @@
 
         {% endblock %}
 
-        {% block footer %}
-        <footer class="footer-area footer-style-two">
-            <div class="footer-top pt-65 pb-25">
-                <div class="custom-container-two">
-                    <div class="footer-newsletter-wrap footer-newsletter-two">
-                        <div class="row justify-content-center align-items-center">
-                            <div class="col-xl-8 col-lg-6">
-                                <div class="newsletter-title">
-                                    <h4>Subscribe <span>Now !</span></h4>
-                                    <span>Venam By Signing Up To Our Newsletter.</span>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-8">
-                                <div class="newsletter-form">
-                                    <form action="#">
-                                        <input type="email" placeholder="Enter Your Email....">
-                                        <button class="btn">Subscribe</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="footer-widget mb-50">
-                                <div class="footer-logo mb-30">
-                                    <a href="index.html"><img src="{% static 'img/logo/white_logo.png' %}" alt=""></a>
-                                </div>
-                                <div class="footer-text mb-35">
-                                    <h5 class="call-us">Got Question? Call us 24/7</h5>
-                                    <h6 class="number">458-965-3224</h6>
-                                    <p>W898 RTower Stat, Suite 56 Brockland, CA 9622 United States</p>
-                                    <a href="#" class="btn"><i class="fas fa-map-marker-alt"></i>view on map</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-sm-6">
-                            <div class="footer-widget mb-50">
-                                <div class="fw-title mb-35">
-                                    <h5>Customer Service</h5>
-                                </div>
-                                <div class="fw-link">
-                                    <ul>
-                                        <li><a href="#">Help Center</a></li>
-                                        <li><a href="#">Returns</a></li>
-                                        <li><a href="#">Product Recalls</a></li>
-                                        <li><a href="#">Accessibility</a></li>
-                                        <li><a href="#">Contact Us</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-sm-6">
-                            <div class="footer-widget mb-50">
-                                <div class="fw-title mb-35">
-                                    <h5>Our Stores</h5>
-                                </div>
-                                <div class="fw-link">
-                                    <ul>
-                                        <li><a href="#">New York</a></li>
-                                        <li><a href="#">London SF</a></li>
-                                        <li><a href="#">Cockfosters BP</a></li>
-                                        <li><a href="#">Los Angeles</a></li>
-                                        <li><a href="#">Chicago</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-sm-6">
-                            <div class="footer-widget mb-50">
-                                <div class="fw-title mb-35">
-                                    <h5>My Account</h5>
-                                </div>
-                                <div class="fw-link">
-                                    <ul>
-                                        <li><a href="#">My Account</a></li>
-                                        <li><a href="#">Discount</a></li>
-                                        <li><a href="#">Returns</a></li>
-                                        <li><a href="#">Orders History</a></li>
-                                        <li><a href="#">Order Tracking</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright-wrap copyright-style-two">
-                <div class="custom-container-two">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="copyright-text">
-                                <p>Copyright © 2020 <a href="#">Venam</a> All Rights Reserved.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 d-none d-md-block">
-                            <div class="payment-method-img text-right">
-                                <img src="{% static 'img/images/card_img.png' %}" alt="img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        {% endblock %}
-        <!-- footer-area-end -->
 
 
 

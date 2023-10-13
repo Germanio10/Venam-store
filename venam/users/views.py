@@ -3,8 +3,6 @@ from django.views.generic import CreateView, UpdateView
 from .forms import UserRegistrationForm, UserLoginForm, UserProfileForm
 from django.urls import reverse_lazy
 from .models import User
-from django.views.generic import TemplateView
-
 
 class UserRegistrationView(CreateView):
     template_name = 'users/registration.html'

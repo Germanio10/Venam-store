@@ -1,11 +1,11 @@
-from typing import Any
-from django.db.models.query import QuerySet
-from django.shortcuts import render
-from .models import Product, Tag, Category, Size, Brand, TypeCategory
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse_lazy
+from .models import Product, Tag, Category, Size, Brand, TypeCategory, Review
 from django.views import View
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-
+from .forms import ReviewForm
+from django.http import HttpResponseRedirect
 
 
 class IndexView(View):
@@ -24,13 +24,28 @@ class ProductDetailView(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['reviews'] = Review.objects.filter(product = self.object)
         context['tags'] = Tag.objects.all()
+        context['form'] = ReviewForm()
         return context
+    
+    def post(self, request, *args, **kwargs):
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            product_id = kwargs['pk']
+            product = get_object_or_404(Product, pk=product_id)
+            review = form.save(commit=False)
+            review.product = product 
+            review.user = request.user 
+            review.save()
+        else:
+            form = ReviewForm()
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
     
     def get_queryset(self):
         queryset = super().get_queryset()
         product_id  = self.kwargs.get('product_id')
-        return queryset.filter(product_id=product_id) if product_id else queryset 
+        return queryset.filter(product_id=product_id) if product_id else queryset
 
 
 class ProductListView(ListView):
@@ -70,4 +85,3 @@ class ProductListView(ListView):
         context['sizes'] = sizes
         context['brands'] = brands
         return context
-    

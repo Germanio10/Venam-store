@@ -88,57 +88,37 @@
                                         <h4 class="title">Product Reviews</h4>
                                     </div>
                                 </div>
-                                <div class="reviews-count-title">
-                                    <h5 class="title">3 review for Pouch Pocket Jacket</h5>
-                                </div>
                                 <div class="row">
                                     <div class="col-lg-6">
+                                        {% for review in reviews %}
                                         <div class="product-review-list blog-comment">
                                             <ul>
                                                 <li>
                                                     <div class="single-comment">
-                                                        <div class="comment-avatar-img">
-                                                            <img src="img/product/review_author_thumb01.jpg" alt="img">
-                                                        </div>
+                                                        {% if review.user.image %} 
+                                                        <img style="width: 72px; height: 72px" src="{{ review.user.image.url }}" alt="img">
+                                                        {% else %} 
+                                                        <img style="width: 72px; height: 72px"  src= "{% static 'img/icon/default_avatar.jpg' %} ">
+                                                        {% endif %}
                                                         <div class="comment-text">
                                                             <div class="comment-avatar-info">
-                                                                <h5>Emaliy Watson <span class="comment-date"> - November 13, 2020</span></h5>
-                                                                <div class="rating">
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                </div>
+                                                                <h5>{{ review.user.first_name }} {{ review.user.last_name }} <span class="comment-date"> {{ review.date_add }}</span></h5>
                                                             </div>
-                                                            <p>Cramond Leopard & Pythong Print Anorak Jacket In Beige but also the leap into electronic typesetting, remaining.</p>
+                                                            <p>{{ review.text }}</p>
                                                         </div>
                                                     </div>
                                                 </li>
                                             </ul>
                                         </div>
+                                        {% endfor %}
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="product-review-form">
-                                            <p>Your email address will not be published. Required fields are marked *</p>
-                                            <form action="#">
+                                            <form action="{% url 'products:review' product.id %}" method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
                                                 <div class="form-grp">
-                                                    <label for="message">YOUR REVIEW *</label>
-                                                    <textarea name="message" id="message"></textarea>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-grp">
-                                                            <label for="uea">YOUR NAME *</label>
-                                                            <input type="text" id="uea">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-grp">
-                                                            <label for="email">YOUR Email *</label>
-                                                            <input type="email" id="email">
-                                                        </div>
-                                                    </div>
+                                                    <label for="{{ form.text.id_for_label }}">YOUR REVIEW *</label>
+                                                    {{ form.text }}
                                                 </div>
                                                 <button class="btn">SUBMIT</button>
                                             </form>

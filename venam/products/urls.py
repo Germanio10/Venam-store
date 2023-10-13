@@ -5,6 +5,7 @@ app_name = 'products'
 
 urlpatterns = [
     path('detail/<int:pk>/', ProductDetailView.as_view(), name='detail'),
+    path('detail/<int:pk>/review/', ProductDetailView.as_view(), name='review'),
     path('product_list/', ProductListView.as_view(), name='product_list'),
     path('category/product_list/<int:category_id>/', ProductListView.as_view(), name='product_list_category'),
     path('size/product_list/<int:size_id>/', ProductListView.as_view(), name='product_list_size'),
