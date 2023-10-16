@@ -151,61 +151,37 @@
                                             <li class="header-shop-cart"><a href="{% url 'carts:cart' %}"><i class="flaticon-shopping-bag"></i><span class="cart-count">{{ cart_products.count }}</span></a>
                                                 <span class="cart-total-price"></span>
                                                 <ul class="minicart">
+                                                    {% for cart in cart_products %}
                                                     <li class="d-flex align-items-start">
                                                         <div class="cart-img">
                                                             <a href="#">
-                                                                <img src="{% static 'img/product/cart_p01.jpg' %}" alt="">
+                                                                <img src="{{ cart.product.get_main_image.image.url }}" alt="">
                                                             </a>
                                                         </div>
                                                         <div class="cart-content">
                                                             <h4>
-                                                                <a href="#">Charity Nike Brand Yellow T-Shirt</a>
+                                                                <a href="#">{{ cart.product.name }}</a>
                                                             </h4>
                                                             <div class="cart-price">
-                                                                <span class="new">$229.9</span>
-                                                                <span>
-                                                                    <del>$229.9</del>
-                                                                </span>
+                                                                <span class="new">${{ cart.product.price }}</span>
                                                             </div>
                                                         </div>
                                                         <div class="del-icon">
-                                                            <a href="#">
+                                                            <a href="{% url 'carts:cart_remove' cart.id %}">
                                                                 <i class="far fa-trash-alt"></i>
                                                             </a>
                                                         </div>
                                                     </li>
-                                                    <li class="d-flex align-items-start">
-                                                        <div class="cart-img">
-                                                            <a href="#">
-                                                                <img src="{% static 'img/product/cart_p02.jpg' %}" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="cart-content">
-                                                            <h4>
-                                                                <a href="#">BackPack For School Student</a>
-                                                            </h4>
-                                                            <div class="cart-price">
-                                                                <span class="new">$229.9</span>
-                                                                <span>
-                                                                    <del>$229.9</del>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="del-icon">
-                                                            <a href="#">
-                                                                <i class="far fa-trash-alt"></i>
-                                                            </a>
-                                                        </div>
-                                                    </li>
+                                                    {% endfor %}
                                                     <li>
                                                         <div class="total-price">
                                                             <span class="f-left">Total:</span>
-                                                            <span class="f-right">$239.9</span>
+                                                            <span class="f-right">${{ total_sum }}</span>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="checkout-link">
-                                                            <a href="#">Shopping Cart</a>
+                                                            <a href="{% url 'carts:cart' %}">Shopping Cart</a>
                                                             <a class="red-color" href="#">Checkout</a>
                                                         </div>
                                                     </li>
@@ -215,29 +191,6 @@
                                     </div>
                                 </nav>
                             </div>
-                            <!-- Mobile Menu  -->
-                            <div class="mobile-menu">
-                                <div class="menu-backdrop"></div>
-                                <div class="close-btn"><i class="fas fa-times"></i></div>
-
-                                <nav class="menu-box">
-                                    <div class="nav-logo"><a href="index.html"><img src="{% static 'img/logo/white_logo.png' %}" alt="" title=""></a>
-                                    </div>
-                                    <div class="menu-outer">
-                                        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
-                                    </div>
-                                    <div class="social-links">
-                                        <ul class="clearfix">
-                                            <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                                            <li><a href="#"><span class="fab fa-facebook-square"></span></a></li>
-                                            <li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>
-                                            <li><a href="#"><span class="fab fa-instagram"></span></a></li>
-                                            <li><a href="#"><span class="fab fa-youtube"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </nav>
-                            </div>
-                            <!-- End Mobile Menu -->
                         </div>
                     </div>
                 </div>
@@ -280,15 +233,17 @@
                         <div class="col-xl-9 col-lg-8">
                             <div class="d-flex align-items-center justify-content-center justify-content-lg-end">
                                 <div class="header-search-wrap">
-                                    <form action="">
+                                    <form action="{% url 'products:product_list' %}" method="GET">
                                         <input type="text" name="query" placeholder="Search for your item's type.....">
-                                        <select name="category" class="custom-select">
+                                        <select name="category_id" class="custom-select">
+                                            <option value="">-- All Categories --</option> <!-- Опция для всех категорий -->
                                             {% for category in categories %}
-                                                <option value="{{ category.name }}">{{ category.name }}</option>
+                                                <option value="{{ category.id }}">{{ category.name }}</option>
                                             {% endfor %}
                                         </select>
                                         <button type="submit"><i class="flaticon-magnifying-glass-1"></i></button>
                                     </form>
+                                    
                                 </div>
                                 <div class="header-free-shopping">
                                     <p>Free Shipping on Orders <span>$39+</span></p>

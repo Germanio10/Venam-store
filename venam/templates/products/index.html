@@ -32,8 +32,7 @@
                                 <div class="exclusive-item-content">
                                     <h5><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h5>
                                     <div class="exclusive--item--price">
-                                        <del class="old-price">${{ product.price }}</del>
-                                        <span class="new-price">${{ product.price }}</span>
+                                        <span class="new-price">$ {{ product.price }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +122,7 @@
                                     <h4 class="title">Trending This Week</h4>
                                 </div>
                                 <div class="view-all-deal">
-                                    <a href="{% url 'products:produc_list' %}"><i class="flaticon-scroll"></i> View All</a>
+                                    <a href="{% url 'products:product_list' %}"><i class="flaticon-scroll"></i> View All</a>
                                 </div>
                             </div>
                         </div>
@@ -145,14 +144,6 @@
                                     <h5><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h5>
                                     <div class="exclusive--item--price">
                                         <del class="old-price">${{ product.price }}</del>
-                                        <span class="new-price">${{ product.price }}</span>
-                                    </div>
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
                                     </div>
                                 </div>
                             </div>

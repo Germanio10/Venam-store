@@ -6,6 +6,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from .forms import ReviewForm
 from django.http import HttpResponseRedirect
+from django.db.models import Q
 
 
 class IndexView(View):
@@ -51,7 +52,7 @@ class ProductDetailView(DetailView):
 class ProductListView(ListView):
     model = Product
     template_name = 'products_list/product_list.html'
-    paginate_by = 9
+    paginate_by = 2
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -59,10 +60,16 @@ class ProductListView(ListView):
         size_id = self.kwargs.get('size_id')
         brand_id = self.kwargs.get('brand_id')
         type_category_id = self.kwargs.get('type_category_id')
+        query = self.request.GET.get('query')
+
         
         if category_id:
             category = Category.objects.get(pk=category_id)
             queryset = queryset.filter(category=category)
+
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+
         
         if size_id:
             size = Size.objects.get(pk=size_id)

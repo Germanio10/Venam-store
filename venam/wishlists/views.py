@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from products.models import Product
 from .models import Wishlist
+from django.contrib.auth.decorators import login_required
 
 
 class WishlistView(ListView):
@@ -17,7 +18,7 @@ class WishlistView(ListView):
         return context
     
 
-
+@login_required
 def wishlist_add(request, product_id):
     product = Product.objects.get(id=product_id)
     wishlist = Wishlist.objects.filter(user=request.user, product=product)

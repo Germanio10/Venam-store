@@ -77,32 +77,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="widget">
-                                    <div class="shop-widget-banner special-offer-banner">
-                                        <a href="shop-left-sidebar.html"><img src="img/product/sidebar_banner_ad.jpg" alt=""></a>
-                                    </div>
-                                </div>
                             </aside>
                         </div>
-                        <div class="col-xl-9 col-lg-8">
-                            <div class="shop-top-meta mb-40">
-                                <p class="show-result">Showing Products 1-12 Of 10 Result</p>
-                                <div class="shop-meta-right">
-                                    <ul>
-                                        <li class="active"><a href="#"><i class="flaticon-grid"></i></a></li>
-                                        <li><a href="#"><i class="flaticon-list"></i></a></li>
-                                    </ul>
-                                    <form action="#">
-                                        <select class="custom-select">
-                                            <option selected="">Default Sorting</option>
-                                            <option>Free Shipping</option>
-                                            <option>Best Match</option>
-                                            <option>Newest Item</option>
-                                            <option>Size A - Z</option>
-                                        </select>
-                                    </form>
-                                </div>
-                            </div>
                             <div class="row">
                                 
                                 {% for product in page_obj %}
@@ -113,23 +89,14 @@
                                                 <img style="width: 327px; height: 358px" src="{{ product.get_main_image.image.url }}" alt="">
                                             </a>
                                             <ul class="action">
-                                                <li><a href="#"><i class="flaticon-shuffle-1"></i></a></li>
-                                                <li><a href="#"><i class="flaticon-supermarket"></i></a></li>
-                                                <li><a href="#"><i class="flaticon-witness"></i></a></li>
+                                                <li><a href="{% url 'wishlists:wishlist_add' product.id %}"><i class="flaticon-heart"></i></a></li>
+                                                <li><a href="{% url 'carts:cart_add' product.id %}"><i class="flaticon-supermarket"></i></a></li>
                                             </ul>
                                         </div>
                                         <div class="exclusive-item-content">
                                             <h5><a href="shop-details.html">{{ product.name }}</a></h5>
                                             <div class="exclusive--item--price">
-                                                <del class="old-price">{{ product.price }}</del>
-                                                <span class="new-price">{{ product.price }}</span>
-                                            </div>
-                                            <div class="rating">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
+                                                <span class="new-price">{{ product.price }} $</span>
                                             </div>
                                         </div>
                                     </div>
@@ -155,37 +122,4 @@
                     </div>
                 </div>
             </div>
-            <!-- shop-area-end -->
-
-            <!-- limited-offer-area -->
-            <section class="limited-offer-area" data-background="img/bg/limited_offer_bg.jpg">
-                <div class="container">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-xl-5 col-lg-6 col-md-7">
-                            <div class="limited-offer-left">
-                                <div class="limited-offer-title">
-                                    <span class="sub-title">exclusive offer</span>
-                                    <h2 class="title">Smart Watch Bracelet</h2>
-                                </div>
-                                <div class="limited-offer-disc">
-                                    <img src="img/images/limited_offer_discount.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-5">
-                            <div class="limited-offer-action">
-                                <a href="#" class="btn">limited time offer</a>
-                                <div class="amount-info">
-                                    <span class="upto">UPTO</span>
-                                    <span class="amount">$ 50.00</span>
-                                    <span class="off">OFF</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <h2 class="limited-overlay-title">Vanam Top Sale 35<span>%</span></h2>
-                <div class="limited-overlay-img"><img src="img/images/limited_offer_img.png" alt=""></div>
-            </section>
-            <!-- limited-offer-area-end -->
 {% endblock %}
