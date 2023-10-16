@@ -236,7 +236,7 @@
                                     <form action="{% url 'products:product_list' %}" method="GET">
                                         <input type="text" name="query" placeholder="Search for your item's type.....">
                                         <select name="category_id" class="custom-select">
-                                            <option value="">-- All Categories --</option> <!-- Опция для всех категорий -->
+                                            <option value="">-- All Categories --</option>
                                             {% for category in categories %}
                                                 <option value="{{ category.id }}">{{ category.name }}</option>
                                             {% endfor %}

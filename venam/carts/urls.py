@@ -1,6 +1,5 @@
 from django.urls import path
 from .views import CartlistView, cart_add, cart_remove
-from django.contrib.auth.decorators import login_required
 
 app_name = 'carts'
 

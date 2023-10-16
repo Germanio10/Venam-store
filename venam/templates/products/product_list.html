@@ -43,13 +43,10 @@
                                     <div class="shop-widget-title">
                                         <h6 class="title">Filter By Price</h6>
                                     </div>
-                                    <div class="price_filter">
-                                        <div id="slider-range"></div>
-                                        <div class="price_slider_amount">
-                                            <span>Price :</span>
-                                            <input type="text" id="amount" name="price" placeholder="Add Your Price" />
-                                        </div>
-                                    </div>
+                                    <form method="get" action="{% url 'products:product_list' %}">
+                                        {{ price_filter_form.as_p }}
+                                        <button type="submit">Apply Filter</button>
+                                    </form>
                                 </div>
                                 <div class="widget shop-widget mb-30">
                                     <div class="shop-widget-title">

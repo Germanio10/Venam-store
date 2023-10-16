@@ -5,7 +5,7 @@ from django import forms
 
 
 class UserRegistrationForm(UserCreationForm):
-    
+
     first_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-grp'
     }))
@@ -24,7 +24,7 @@ class UserRegistrationForm(UserCreationForm):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-grp'
     }))
-    
+
     class Meta:
         model = User
         fields = ('first_name',
@@ -33,7 +33,7 @@ class UserRegistrationForm(UserCreationForm):
                   'email',
                   'password1',
                   'password2')
-        
+
 
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
@@ -45,11 +45,11 @@ class UserLoginForm(AuthenticationForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-grp'
     }))
-    
+
     class Meta:
         model = User
         fields = ('email', 'password')
-    
+
 
 class UserProfileForm(UserChangeForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={

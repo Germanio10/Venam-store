@@ -2,15 +2,17 @@ from django.db import models
 from django.core.validators import MaxValueValidator
 from users.models import User
 
+
 class Category(models.Model):
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='category_images')
 
     def __str__(self):
         return self.name
-    
+
     def get_product_count(self):
         return self.products.all().count()
+
 
 class TypeCategory(models.Model):
     name = models.CharField(max_length=50)
@@ -18,7 +20,6 @@ class TypeCategory(models.Model):
 
     def __str__(self):
         return f"{', '.join(category.name for category in self.category.all())}: {self.name}"
-
 
 
 class SubTypeCategory(models.Model):
@@ -31,7 +32,7 @@ class SubTypeCategory(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=50)
-    
+
     def __str__(self) -> str:
         return self.name
 
@@ -39,20 +40,22 @@ class Tag(models.Model):
 class Size(models.Model):
     cloth_size = models.CharField(max_length=50, blank=True)
     shoes_size = models.CharField(max_length=20, blank=True)
-    
+
     def __str__(self) -> str:
         return self.cloth_size if self.cloth_size else self.shoes_size
 
+
 class Brand(models.Model):
     name = models.CharField(max_length=40)
-    
+
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    rating = models.PositiveSmallIntegerField(default=0, 
-                                              blank=True, 
+    rating = models.PositiveSmallIntegerField(default=0,
+                                              blank=True,
                                               null=True,
                                               validators=[MaxValueValidator(5)])
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -65,31 +68,31 @@ class Product(models.Model):
     sub_type_category = models.ForeignKey(SubTypeCategory, on_delete=models.CASCADE, related_name='products')
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     is_stock = models.BooleanField(default=True)
-    
+
     def __str__(self):
-        return self.name 
-    
+        return self.name
+
     def get_main_image(self):
         return ProductImage.objects.filter(product=self, is_thumbnail=False).first()
-    
-    
+
     def get_thumbnail_images(self):
         return ProductImage.objects.filter(product=self, is_thumbnail=True)
-    
+
+
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='product_images')
     is_thumbnail = models.BooleanField(default=False)
-    
+
     def __str__(self) -> str:
         return self.product.name + "Image"
-    
+
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
     text = models.TextField()
     date_add = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return f"{self.user.username}: {self.product}: {self.text}"

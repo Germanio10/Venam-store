@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import *
+from products.models import (SubTypeCategory, Tag, Size, ProductImage,
+                             Product, Brand, Category,
+                             TypeCategory, Review)
 admin.site.register(SubTypeCategory)
 admin.site.register(Tag)
 admin.site.register(Size)

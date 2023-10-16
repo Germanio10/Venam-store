@@ -1,6 +1,4 @@
-from typing import Any
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.views.generic.list import ListView
 from products.models import Product
 from .models import Cart
@@ -10,7 +8,7 @@ from django.urls import reverse
 class CartlistView(ListView):
     template_name = 'carts/cart.html'
     model = Cart
-    
+
 
 def cart_add(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -29,4 +27,3 @@ def cart_remove(request, cart_id):
     cart = Cart.objects.get(id=cart_id)
     cart.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
-    

@@ -1,6 +1,4 @@
-from typing import Any
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.views.generic.list import ListView
 from products.models import Product
 from .models import Wishlist
@@ -10,13 +8,13 @@ from django.contrib.auth.decorators import login_required
 class WishlistView(ListView):
     template_name = 'wishlists/wishlist.html'
     model = Wishlist
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product_wishlists = Wishlist.objects.filter(user=self.request.user)
         context['product_wishlists'] = product_wishlists
         return context
-    
+
 
 @login_required
 def wishlist_add(request, product_id):
