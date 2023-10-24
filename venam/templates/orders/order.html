@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+            <section class="breadcrumb-area breadcrumb-bg" data-background="{% static 'img/bg/breadcrumb_bg.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="breadcrumb-content text-center">
+                                <h2>Shopping Checkout</h2>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb-area-end -->
+
+            <!-- checkout-area -->
+            <section class="checkout-area pt-100 pb-100">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="checkout-wrap">
+                                <h5 class="title">billing information</h5>
+                                <form action="{% url 'orders:order-create' %}" class="checkout-form" method="post">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-grp">
+                                                <label for="{{ form.first_name.id_for_label }}">FIRST NAME <span>*</span></label>
+                                                {{ form.first_name }}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-grp">
+                                                <label for="{{ form.last_name.id_for_label }}">Last NAME <span>*</span></label>
+                                                {{ form.last_name }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-grp">
+                                                <label for="{{ form.company_name.id_for_label }}">COMPANY NAME <small>(OPTIONAL)</small></label>
+                                                {{ form.company_name }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-grp">
+                                                <label for="{{ form.country.id_for_label }}">COUNTRY / REGION *</label>
+                                                {{ form.country }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-grp">
+                                                <label for="{{ form.street.id_for_label }}">STREET ADDRESS *</label>
+                                                {{ form.street }}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-grp">
+                                                <label for="{{ form.town.id_for_label }}">TOWN / CITY *</label>
+                                                {{ form.town }}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-grp">
+                                                <label for="{{ form.state.id_for_label }}">STATE *</label>
+                                                {{ form.state }}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-grp">
+                                                <label for="{{ form.zip.id_for_label }}">postal ZIP <span>*</span></label>
+                                                {{ form.zip }}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-grp">
+                                                <label for="{{ form.phone.id_for_label }}">Your PHONE <span>*</span></label>
+                                                {{ form.phone }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-grp">
+                                                <label for="{{ form.email.id_for_label }}">EMAIL ADDRESS <span>*</span></label>
+                                                {{ form.email }}
+                                            </div>
+                                        </div>
+                                        <button class="btn">PROCEED TO CHECKOUT</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-8">
+                            <aside class="shop-cart-sidebar checkout-sidebar">
+                                <div class="shop-cart-widget">
+                                    <h6 class="title">Cart Totals</h6>
+                                    <form action="">
+                                        {% for cart in cart_products %}
+                                        <ul>
+                                            <li><span>SUBTOTAL</span> $ {{ cart.subtotal_sum }}</li>
+                                            <li class="cart-total-amount"><span>TOTAL</span> <span class="amount">$ {{ cart.subtotal_sum }}</span></li>
+                                        </ul>
+                                        {% endfor %}
+                                    </form>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- checkout-area-end -->
+
+            <!-- core-features -->
+            <section class="core-features-area core-features-style-two">
+                <div class="container">
+                    <div class="core-features-border">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="core-features-item mb-50">
+                                    <div class="core-features-icon">
+                                        <img src="{% static 'img/icon/core_features01.png' %}" alt="">
+                                    </div>
+                                    <div class="core-features-content">
+                                        <h6>Free Shipping On Over $ 50</h6>
+                                        <span>Agricultural mean crops livestock</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="core-features-item mb-50">
+                                    <div class="core-features-icon">
+                                        <img src="{% static 'img/icon/core_features02.png' %}" alt="">
+                                    </div>
+                                    <div class="core-features-content">
+                                        <h6>Membership Discount</h6>
+                                        <span>Only MemberAgricultural livestock</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="core-features-item mb-50">
+                                    <div class="core-features-icon">
+                                        <img src="{% static 'img/icon/core_features03.png' %}" alt="">
+                                    </div>
+                                    <div class="core-features-content">
+                                        <h6>Money Return</h6>
+                                        <span>30 days money back guarantee</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="core-features-item mb-50">
+                                    <div class="core-features-icon">
+                                        <img src="{% static 'img/icon/core_features04.png' %}" alt="">
+                                    </div>
+                                    <div class="core-features-content">
+                                        <h6>Online Support</h6>
+                                        <span>30 days money back guarantee</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+{% endblock %}

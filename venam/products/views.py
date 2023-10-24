@@ -5,9 +5,11 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from .forms import ReviewForm, PriceFilterForm
 from django.http import HttpResponseRedirect
+from common.views import TitleMixin
+from django.core.cache import cache
 
 
-class IndexView(View):
+class IndexView(TitleMixin, View):
 
     def get(self, request, *args, **kwargs):
         products = Product.objects.all()
@@ -15,16 +17,23 @@ class IndexView(View):
             'products': products,
         }
         return render(request, 'products/index.html', context)
+    title = 'Venam Store'
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(TitleMixin, DetailView):
     model = Product
     template_name = 'products/detail.html'
+    title = 'Детальная информация о товаре'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        tags = cache.get('tags')
+        if not tags:
+            context['tags'] = Tag.objects.all()
+            cache.set('tags', context['tags'], 30)
+        else:
+            context['tags'] = tags
         context['reviews'] = Review.objects.filter(product=self.object)
-        context['tags'] = Tag.objects.all()
         context['form'] = ReviewForm()
         return context
 
@@ -47,10 +56,11 @@ class ProductDetailView(DetailView):
         return queryset.filter(product_id=product_id) if product_id else queryset
 
 
-class ProductListView(ListView):
+class ProductListView(TitleMixin, ListView):
     model = Product
     template_name = 'products_list/product_list.html'
     paginate_by = 2
+    title = 'Список товаров'
 
     def get_queryset(self):
         queryset = super().get_queryset()

@@ -7,7 +7,7 @@ from django import forms
 class UserRegistrationForm(UserCreationForm):
 
     first_name = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-grp'
+        'class': 'form-grp',
     }))
     last_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-grp'

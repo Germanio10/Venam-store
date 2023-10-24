@@ -27,7 +27,9 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('wishlist/', include('wishlists.urls', namespace='wishlists')),
     path('cart/', include('carts.urls', namespace='carts')),
+    path('orders/', include('orders.urls', namespace='orders')),
     path('accounts/', include('allauth.urls')),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
 
 if settings.DEBUG:

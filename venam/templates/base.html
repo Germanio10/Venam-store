@@ -148,7 +148,7 @@
                                     <div class="header-action d-none d-md-block">
                                         <ul>
                                             <li><a href="{% url 'wishlists:wishlist' %}"><i class="flaticon-heart"></i></a></li>
-                                            <li class="header-shop-cart"><a href="{% url 'carts:cart' %}"><i class="flaticon-shopping-bag"></i><span class="cart-count">{{ cart_products.count }}</span></a>
+                                            <li class="header-shop-cart"><a href="{% url 'carts:cart' %}"><i class="flaticon-shopping-bag"></i> {% if cart_products %}<span class="cart-count">{{ cart_products.count }}</span> {% else %} <span class="cart-count">0</span></a>{% endif %}
                                                 <span class="cart-total-price"></span>
                                                 <ul class="minicart">
                                                     {% for cart in cart_products %}
